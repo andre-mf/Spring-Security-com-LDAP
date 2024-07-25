@@ -30,4 +30,22 @@ public class LdapService {
                     return ldapUser;
                 });
     }
+
+    public LdapUser getUserById(String uid) {
+        List<LdapUser> userDetails =
+            ldapTemplate.search(BASE_DN, "(uid=" + uid + ")",
+                (AttributesMapper<LdapUser>) attributes -> {
+                    LdapUser ldapUser = new LdapUser();
+                    ldapUser.setCn(attributes.get("cn").get().toString());
+                    ldapUser.setSn(attributes.get("sn").get().toString());
+                    ldapUser.setUsername(attributes.get("uid").get().toString());
+                    ldapUser.setPassword(attributes.get("userPassword").get().toString());
+                    return ldapUser;
+                });
+
+        if (userDetails.size() > 0) {
+            return userDetails.get(0);
+        }
+        return null;
+    }
 }

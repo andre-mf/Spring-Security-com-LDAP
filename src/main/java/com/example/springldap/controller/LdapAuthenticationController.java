@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -38,5 +39,10 @@ public class LdapAuthenticationController {
     @GetMapping("/getAllUsers")
     public List<LdapUser> getAllUsers() {
         return ldapService.getAllUsers();
+    }
+
+    @GetMapping("/getUserById/{uid}")
+    public LdapUser getUserById(@PathVariable String uid) {
+        return ldapService.getUserById(uid);
     }
 }
