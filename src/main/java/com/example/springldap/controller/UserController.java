@@ -25,4 +25,10 @@ public class UserController {
         ldapService.addUser(ldapUser);
         return "success";
     }
+
+    @GetMapping("/userList")
+    public String userList( Model model) {
+        model.addAttribute("userList", ldapService.getAllUsers());
+        return "userList";
+    }
 }
