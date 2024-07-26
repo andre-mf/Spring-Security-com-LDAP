@@ -53,7 +53,7 @@ public class LdapService {
 
     public void deleteUser(String uid) {
         Name userDn= LdapNameBuilder.newInstance(BASE_DN)
-                .add("uid", uid)
+                .add("cn", uid)
                 .build();
         ldapTemplate.unbind(userDn);
     }
