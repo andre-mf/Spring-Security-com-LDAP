@@ -45,4 +45,10 @@ public class LdapAuthenticationController {
     public LdapUser getUserById(@PathVariable String uid) {
         return ldapService.getUserById(uid);
     }
+
+    @GetMapping("/deleteUser/{uid}")
+    public String deleteUser(@PathVariable String uid) {
+        ldapService.deleteUser(uid);
+        return "User Deleted";
+    }
 }
