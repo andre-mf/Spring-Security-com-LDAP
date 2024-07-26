@@ -45,7 +45,7 @@ public class LdapService {
                     return ldapUser;
                 });
 
-        if (userDetails.size() > 0) {
+        if (!userDetails.isEmpty()) {
             return userDetails.get(0);
         }
         return null;
